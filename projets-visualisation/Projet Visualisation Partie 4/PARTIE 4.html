@@ -1,0 +1,97 @@
+	<!DOCTYPE html>
+	<html>
+
+	
+	<head>
+	<meta charset="utf-8">
+	<style>
+	.axis{
+	font:10px sans-serif;
+	fill:none;
+	stroke:#000;
+	shape-rendering : crispEdges;
+	}
+	
+		.bar{
+	fill:steelblue;
+	}
+
+	</style>
+	</head>
+	
+	<body>
+	
+	<script src="d3.js"></script>
+
+	
+	<script>
+	//Parametrage des dimensions
+	var margin = {top:20, right:20, bottom:70, left:40},
+	width = 600, height = 600;
+	
+	//Mise en place du cadre de dessin
+	var svg = d3.select("body").append("svg")
+	.attr("width",width + margin.left + margin.right)
+	.attr("height",height + margin.top + margin.bottom)
+	.append("g")
+	.attr("transform","translate(" + margin.left + "." + margin.top + ")");
+	
+	var election = 
+	[{"candidat":1, "nom":"MackySall", "part":58.26},
+	{"candidat":2, "nom":"IdrissaSeck", "part":20.51},
+	{"candidat":3, "nom":"OusmaneSonko", "part":15.67},
+	{"candidat":4, "nom":"IssaSall", "part":4.07},
+	{"candidat":5, "nom":"MadickeNiang", "part":1.48}];
+	
+	
+	//Mise en place des axes
+	var x = d3.scale.ordinal()
+	.rangeRoundBands([0,width],0.10);
+	
+	var y = d3.scale.linear()
+	.range([height,0]);
+	
+	var xAxis = d3.svg.axis()
+	.scale(x)
+	.orient("bottom");
+	
+	var yAxis = d3.svg.axis()
+	.scale(y)
+	.orient("left")
+	.ticks(10);
+	
+	election.forEach(function(d){
+		d.candidat = d.candidat;
+		d.part = +d.part;
+	});
+
+	x.domain(election.map(function(d){return d.candidat;}));
+	y.domain([0,d3.max(election, function(d){return d.part;})]);
+	
+	svg.append("g")
+	.attr("class","x axis")
+	.attr("transform","translate(0,"+height+")")
+	.call(xAxis);
+	
+	svg.append("g")
+	.attr("class","y axis")
+	.call(yAxis);
+	
+	
+	//Representation des données en bande
+	var group = svg.append("g");
+	group.selectAll("bar")
+	.data(election)
+	.enter()
+	.append("rect")
+	.attr("class","bar")
+	.attr("x",function(d){return x(d.candidat);})
+	.attr("width",x.rangeBand())
+	.attr("y",function(d){return y(d.part);})
+	.attr("height",function(d){return height - y(d.part);});
+	
+	</script>
+	
+	</body>
+</html>
+

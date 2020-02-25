@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Etats des salaires des Employés</title>
+        <meta charset="utf-8">
+<style>
+</style>
+</head>
+
+<body>
+    <script src="d3_v3.js"><script>
+
+    </script>
+    
+      
+         <fieldset>
+         <legend>Informations sur l'employé</legend>
+        <!--Vos coordonnées--> 
+        <label for="Nom">Nom de l'employé</label>
+        <input type="text" name="Nom" id="Nom" />
+
+        <p>
+
+        <label for="Categorie">Categorie</label><br />
+            <select name="Categorie" id="categorie">
+                <option
+    value="Categorie A">Categorie A</option>
+                <option
+    value="Categorie B">Categorie B</option>
+                <option
+    value="Categorie C">Categorie C</option>
+            </select>
+        </p>
+
+            <label for="Nombre d'heures">Nombre d'heures</label>
+                <input type="number">
+    
+    </fieldset>
+
+    <fieldset>
+        <legend>A t-il effectué des Heures Supplémentaires?</legend>
+        
+        <P>
+                    <input type="radio" name="A t-il effectué des heures supplémentaires?" value="Oui" id="Oui" /> 
+            <label for="Oui">Oui</label>
+                    <input type="radio" name="A t-il effectué des heures supplémentaires?" value="Non" id="Non" />
+            <label for="Non">Non</label>
+                    </P>
+                </fieldset>
+        <p>
+                <input type="number" min="1" max="40" />
+                <fieldset>
+            <label for="Avantages">Avantages</label>
+                    <input type="number" name="Avantages" id="Avantages"/>
+                     </fieldset>
+                     </p>
+        <p>
+                <input type="submit" value="Ajouter" (:required {background-color: green; }) />
+                <input type="submit" value="Annuler" (:required {background-color: red}) />
+
+                </p>
+        
+            </form>
+
+    <style>
+    vertical-line{border-left : 10px solid; display: inline-block; height: 50px; margin: 50px;}
+        </style>
+    <table>
+    <tr>
+    
+        <td>Nom</td>
+        <td>Salaire</td>
+        <td>RAS</td>
+        <td>Salaire Net</td>
+    </tr>
+    <tr>
+        <td>Modou Diop</td>
+        <td>1422000 FCFA</td>
+        <td>1422000 FCFA</td>
+        <td>1279800 FCFA</td>
+    <tr/>
+    </table>
+        
+
+    
+</body>
+</html>
